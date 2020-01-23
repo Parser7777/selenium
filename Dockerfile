@@ -1,18 +1,12 @@
-FROM python:3.8-alpine
+FROM alpine:3.10
 
-# Installs latest Chromium package.
-RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community > /etc/apk/repositories \
-    && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
-    && apk add --no-cache \
-    libstdc++@edge \
-    chromium@edge \
-    chromium-chromedriver@edge \
-    harfbuzz@edge \
-    nss@edge \
-    freetype@edge \
-    ttf-freefont@edge \
-    && rm -rf /var/cache/* \
-    && mkdir /var/cache/apk
+RUN echo "http://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories && \
+	echo "http://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
+	apk update && \
+	apk add python py-pip curl unzip libexif udev chromium chromium-chromedriver xvfb && \
+	pip install selenium && \
+	pip install pyvirtualdisplay
 
 ENV CHROME_BIN=/usr/bin/chromium-browser \
-    CHROME_PATH=/usr/lib/chromium/
+    CHROME_PATH=/usr/lib/chromium/ \
+    DISPLAY=:99
