@@ -6,6 +6,7 @@ RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community > /etc/apk/reposi
     && apk add --no-cache \
     libstdc++@edge \
     chromium@edge \
+    chromium-chromedriver@edge \
     harfbuzz@edge \
     nss@edge \
     freetype@edge \
