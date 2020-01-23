@@ -8,5 +8,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.11/main" >> /etc/apk/repositorie
 	pip3 install pyvirtualdisplay
 
 ENV CHROME_BIN=/usr/bin/chromium-browser \
+    CHROMEDRIVER_BIN=/usr/bin/chromedriver \
     CHROME_PATH=/usr/lib/chromium/ \
     DISPLAY=:99
